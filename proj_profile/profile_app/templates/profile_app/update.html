@@ -1,0 +1,26 @@
+{% extends "profile_app/base.html" %}
+
+
+{% block title %}
+Update
+{% endblock title %}
+
+
+{% block content %}
+
+<h1>This is Update page.</h1>
+<br>
+
+<!-- Form to update a Profile -->
+<h3>Update Profile.</h3> 
+
+<form action="{% url 'profile_app:update' profile.pk %}" method="post">
+    {% csrf_token %}
+    {{ form.as_div }}
+    <button type="submit">Update</button>
+</form>
+
+<!-- If don't want to update; Go Back -->
+<a href="{% url 'profile_app:profile' profile.pk %}">Return</a>
+
+{% endblock content %}

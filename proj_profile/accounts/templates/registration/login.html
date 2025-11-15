@@ -1,0 +1,24 @@
+{% extends "profile_app/base.html" %}
+
+
+{% block title %}
+Login
+{% endblock title %}
+
+
+{% block content %}
+<h1>This is Login page.</h1>
+
+<br>
+
+<!-- Login form -->
+<form action="{% url 'accounts:login' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_div }}
+    <button type="submit">Login</button>
+</form>
+
+<!-- If not registered; Register -->
+<a href="{% url 'accounts:register' %}">Register here</a>
+
+{% endblock content %}

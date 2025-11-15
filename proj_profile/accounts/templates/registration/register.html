@@ -1,0 +1,26 @@
+{% extends "profile_app/base.html" %}
+
+
+{% block title %}
+Register
+{% endblock title %}
+
+
+{% block content %}
+<h1>This is Register page.</h1>
+
+<br>
+
+<!-- Register form -->
+<form action="{% url 'accounts:register' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_div }}    
+    <button type="submit">Register</button>
+</form>
+
+
+<!-- If already register; login -->
+<a href="{% url 'accounts:login' %}">Login here</a>
+
+
+{% endblock content %}

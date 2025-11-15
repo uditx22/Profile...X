@@ -1,0 +1,31 @@
+{% extends "profile_app/base.html" %}
+
+
+{% block title %}
+Profile
+{% endblock title %}
+
+
+{% block content %}
+
+
+<h1>This is Profile page.</h1>
+
+
+<h2>Welcome {{ profile.name }} </h2>
+<br>
+<img src="{{ profile.profile_pic.url }}" alt="{{ profile.name }}" width="200">
+<br>
+<p><strong>Name: </strong> {{ profile.name }} </p>
+<p><strong>Bio: </strong> {{ profile.bio }} </p>
+<p><strong>Location: </strong> {{ profile.location }} </p>
+<p><strong>Website: </strong> {{ profile.website }} </p>
+
+<hr>
+
+<a href="{% url 'profile_app:dashboard' %}">Return</a> - 
+<a href="{% url 'profile_app:update' profile.pk %}">Update</a> - 
+<a href="{% url 'profile_app:delete' profile.pk %}">Delete</a> - 
+
+
+{% endblock content %}

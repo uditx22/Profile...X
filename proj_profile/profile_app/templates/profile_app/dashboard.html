@@ -1,0 +1,28 @@
+{% extends "profile_app/base.html" %}
+
+
+{% block title %}
+Dashboard
+{% endblock title %}
+
+
+{% block content %}
+
+
+<h1>This is Dashboard page.</h1>
+
+{% for profile in profiles %}
+
+{% comment %} <p>{{ profile.name }}</p> {% endcomment %}
+  
+<p>{{profile.name}}- <a href="{% url 'profile_app:profile' profile.pk  %}">Click me!</a> </p>
+
+{% endfor %}
+
+<br>
+<br>
+
+<h5>Create more Profile: </h5>
+<a href="{% url 'profile_app:create' %}">Create</a>
+
+{% endblock content %}
