@@ -1,81 +1,85 @@
-<nav class="navbar navbar-expand-lg text-white bg-primary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'profile_app:home' %}">ProfileX</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="mx-12 my-8 p-4 border-2 border-gray-800 rounded-3xl bg-white shadow-lg">
+    <div class="flex justify-between items-center">
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        
-        {% if user.is_authenticated %}
+        <!-- logo -->
+        <a class="text-blue-600 text-4xl font-bold tracking-wide" href="{% url 'profile_app:home' %}">
+            ProfileX
+        </a>
 
-          <li class="nav-item">
-              <span class="navbar-text me-2">Hello, {{ user.username }}.
-                </span></li>
+        <!-- Menu -->
+        <ul id="menu" class="hidden md:flex space-x-6 items-center">
 
-        {% comment %} <li class="nav-item">
+            {% if user.is_authenticated %}
+
+                <li>
+                    <span class="text-gray-700 text-lg font-medium">
+                        Hello, {{ user.username }}.
+                    </span>
+                </li>
+     {% comment %} 
+    <li class="nav-item">
           <a
-            class="nav-link active"
+            class="text-gray-700 hover:text-blue-600 transition font-medium text-lg"
             aria-current="page"
             href="{% url 'profile_app:dashboard' profile.pk %}">Dashboard</a>
-        </li> {% endcomment %}
+        </li>
+         {% endcomment %}
 
-        {% comment %} <li class="nav-item">
+        {% comment %} 
+        <li class="nav-item">
           <a
-            class="nav-link active"
+           class="text-gray-700 hover:text-blue-600 transition font-medium text-lg"
             aria-current="page"
             href="{% url 'profile_app:create' %}"
             >Create</a
           >
-        </li> {% endcomment %}
+        </li> 
+        {% endcomment %}
+                <li>
+                    <form action="{% url 'accounts:logout' %}" method="post">
+                        {% csrf_token %}
+                        <button name="submit" 
+                            class="px-4 py-2 bg-red-600 text-white rounded-xl hover:bg-red-700 transition font-semibold">
+                            Log out
+                        </button>
+                    </form>
+                </li>
 
+            {% else %}
 
-        <form action="{% url 'accounts:logout' %}" method="post">
-          {% csrf_token %}
-          <button name='submit' class='btn btn-success'>
-              Log out</button>
-        </form>
+                <li>
+                    <a href="{% url 'profile_app:home' %}" 
+                       class="text-gray-700 hover:text-blue-600 transition font-medium text-lg">
+                        Home
+                    </a>
+                </li>
 
-        {% else %}
+                <li>
+                    <a href="{% url 'profile_app:home' %}" 
+                       class="text-gray-700 hover:text-blue-600 transition font-medium text-lg">
+                        About Us
+                    </a>
+                </li>
 
-        <li class="nav-item">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            href="{% url 'profile_app:home' %}"
-            >Home</a
-          >
-        </li>
+                <li>
+                    <a href="{% url 'accounts:register' %}" 
+                       class="text-gray-700 hover:text-blue-600 transition font-medium text-lg">
+                        Register
+                    </a>
+                </li>
 
-        <li class="nav-item">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            href="{% url 'accounts:register' %}"
-            >Register</a
-          >
-        </li>
+                <li>
+                    <a href="{% url 'accounts:login' %}" 
+                       class="text-gray-700 hover:text-blue-600 transition font-medium text-lg">
+                        Login
+                    </a>
+                </li>
 
-        <li class="nav-item">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            href="{% url 'accounts:login' %}"
-            >Login</a
-          >
-        </li>
-
-        {% endif %}
-      </ul>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
     </div>
   </div>
 </nav>
+
